@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body onload="main()">
+  <canvas id="webgl" width="400" height="400">
+  Please use a browser that supports "canvas"
+  </canvas>
+
+  <p id="numdot"> XXX </p>
+
+  <button type="button" id="green">Green</button>
+  <button type="button" id="red">Red</button>
+
+  <button type="button" id="clearButton">Clear</button>
+
+  <p>
+  <button type="button" id="pointButton">Point</button>
+  <button type="button" id="triangleButton">Triangle</button>
+  <button type="button" id="circleButton">Circle</button>
+
+  <p>
+    Alpha:
+    <input type="range" id="alphaSlider" min="0" max="1" step="0.01" value="1.0">
+  </p>  
+  <p>
+  Red <input type="range" min="0" max="100" value="100" class="slider" id="redSlide">
+  <p>
+  Green <input type="range" min="0" max="100" value="0" class="slider" id="greenSlide">
+  <p>
+  Blue <input type="range" min="0" max="100" value="0" class="slider" id="blueSlide">
+  <p>
+  Size <input type="range" min="5" max="40" value="0" class="slider" id="sizeSlide">
+  <p>
+  Segments <input type="range" min="5" max="50" value="0" class="slider" id="segmentSlide">
+
+  <p>
+  <p>My drawing:</p>
+  <img src="triangle_drawing.png" alt="Triangle Drawing" width="300" id="drawing-reference">
+  <p><button id="showDrawingButton">Show My Triangle Drawing</button></p>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="ColoredPoints.js"></script>
+    <script src="circle.js"></script>
+    <script src="triangle.js"></script>
+    <script src="point.js"></script>
+  </body>
+</html>
