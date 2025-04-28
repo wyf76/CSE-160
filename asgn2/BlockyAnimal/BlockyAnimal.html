@@ -12,27 +12,10 @@
     /* Add some spacing for sliders */
     p { margin-bottom: 5px; }
     label { display: inline-block; width: 100px; }
-    .grader-note {
-        position: absolute; /* Position relative to body */
-        top: 10px;          /* Align with FPS counter top */
-        right: 10px;         /* Position on the right */
-        background-color: #ffffcc;
-        border: 1px solid #e6e600;
-        padding: 8px;
-        margin-bottom: 15px;
-        font-weight: bold;
-        max-width: 250px; /* Prevent it from getting too wide */
-        text-align: right;
-        z-index: 10; /* Ensure it's above canvas */
-    }
   </style>
 </head>
 
 <body onload="main()">
-  <div class="grader-note">
-    Note for Grader: Please see the README.md file in the GitHub repository for development notes and feature breakdown.
-  </div>
-
   <canvas id="webgl" width="700" height="700">
   Please use a browser that supports "canvas"
   </canvas>

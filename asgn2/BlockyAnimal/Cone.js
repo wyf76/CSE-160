@@ -1,29 +1,3 @@
-// class Cone {
-//     constructor() {
-//         this.type = 'cone';
-//         this.color = [1,0,0,1];
-//         this.matrix = new Matrix4();
-//         this.segments = 20;
-//     }
-
-//     render() {
-//         let vertices = [];
-//         for (let i=0; i<this.segments; i++) {
-//             let angle1 = (i/this.segments)*2*Math.PI;
-//             let angle2 = ((i+1)/this.segments)*2*Math.PI;
-
-//             vertices.push(0,0,0,
-//                          Math.cos(angle1)*0.5,0,Math.sin(angle1)*0.5,
-//                          Math.cos(angle2)*0.5,0,Math.sin(angle2)*0.5);
-//             vertices.push(Math.cos(angle1)*0.5,0,Math.sin(angle1)*0.5,
-//                          Math.cos(angle2)*0.5,0,Math.sin(angle2)*0.5,
-//                          0,1,0);
-//         }
-//         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
-//         gl.uniform4f(u_FragColor, this.color[0], this.color[1], this.color[2], this.color[3]);
-//         drawTriangle3D(vertices);
-//     }
-// }
 class Cone {
     constructor(segments = 10) { // Allow customizing segments
         this.type = 'cone';
