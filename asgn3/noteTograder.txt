@@ -1,0 +1,31 @@
+Where to look
+
+index.html: HTML setup and script includes
+
+World.js: Main rendering loop, maze generator, camera controls, treasure logic
+
+cube.js: Cube mesh and draw utility
+
+camera.js: Camera movement and mouse‑look implementation
+
+assets/: wall.jpg, ground.jpg, treasure.jpg
+
+Controls for grading
+
+W/A/S/D: Move forward/left/back/right
+
+Q/E: Pan camera left/right
+
+Click on canvas + move mouse: Pointer lock and look around
+
+Z: Add a block in front of the camera
+
+C: Remove a block in front of the camera
+
+!!!!! I used ChatGPT to help me debug the treasure interaction, add animations, and simplify the shader for mixing a solid‑color sky.
+
+Simple story/game (“wow” element) (1 / 1)– World.js, checkTreasure() proximity test; lines 240–255: onTreasureFound() animation.
+
+Performance (≥10 FPS on 32×32) (0.5 / 0.5)– World.js, FPS counter in tick().
+
+Creativity bonus (“Wow!”) (0.5 / 0.5)– World.js, treasure pop‑spin animation.
