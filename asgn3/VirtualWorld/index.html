@@ -1,47 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Assignment 0</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>Maze World (Windowed)</title>
+  <style>
+    body { margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#222; }
+    canvas { width:800px; height:600px; border:2px solid #444; }
+  </style>
+</head>
+<body onload="main()">
+  <canvas id="webgl" width="800" height="600"></canvas>
+  <div id="fps" style="
+    position: absolute;
+    top: 10px; left: 10px;
+    color: #0f0;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    font-family: monospace;
+    font-size: 14px;
+    border-radius: 4px;
+  ">FPS: --</div>
 
-  <body>
-    <canvas id="example" width="800" height="600">
-      Please use a browser that supports "canvas"
-    </canvas>
-
-    <p>
-      v1: x <input type="text" id="xInput" size="5" value="0"> 
-      y <input type="text" id="yInput" size="5" value="0">
-    </p>
-    <p>
-      v2: x <input type="text" id="xInput2" size="5" value="0"> 
-      y <input type="text" id="yInput2" size="5" value="0">
-    </p>
-    <p>
-      <input type="button" value="Draw Vectors" onclick="handleDrawEvent()">
-    </p>
-
-    <p>
-      Scalar: <input type="text" id="scalarInput" size="5" value="1">
-      Operation:
-      <select id="operation">
-        <option value="add">Add</option>
-        <option value="sub">Subtract</option>
-        <option value="mul">Multiply</option>
-        <option value="div">Divide</option>
-        <option value="magnitude">Magnitude</option>
-        <option value="normalize">Normalize</option>
-        <option value="angle">Angle Between</option>
-        <option value="area">Area</option>
-      </select>
-      <input type="button" value="Draw Operation" onclick="handleDrawOperationEvent()">
-    </p>
-
+    
     <script src="../lib/webgl-utils.js"></script>
     <script src="../lib/webgl-debug.js"></script>
     <script src="../lib/cuon-utils.js"></script>
     <script src="../lib/cuon-matrix.js"></script>
+    <script src="cube.js"></script>
+    <script src="camera.js"></script>
     <script src="World.js"></script>
-  </body>
+</body>
 </html>

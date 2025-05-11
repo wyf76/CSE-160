@@ -1,58 +1,57 @@
 class Cube {
-  constructor() {
-      this.type = 'cube';
-      this.color = [1.0, 1.0, 1.0, 1.0];
-      this.matrix = new Matrix4();
-
-      // Define vertices for a unit cube (0,0,0) to (1,1,1)
-      // 6 faces * 2 triangles/face * 3 vertices/triangle = 36 vertices
-      this.vertices = new Float32Array([
-          // Front face
-          0,0,0,  1,0,0,  1,1,0,    0,0,0,  1,1,0,  0,1,0,
-          // Back face
-          0,0,1,  1,0,1,  1,1,1,    0,0,1,  1,1,1,  0,1,1,
-          // Top face
-          0,1,0,  1,1,0,  1,1,1,    0,1,0,  1,1,1,  0,1,1,
-          // Bottom face
-          0,0,0,  1,0,0,  1,0,1,    0,0,0,  1,0,1,  0,0,1,
-          // Left face
-          0,0,0,  0,1,0,  0,1,1,    0,0,0,  0,1,1,  0,0,1,
-          // Right face
-          1,0,0,  1,1,0,  1,1,1,    1,0,0,  1,1,1,  1,0,1
-      ]);
-      this.vertexCount = this.vertices.length / 3;
-
-      // Create vertex buffer only once in constructor
-      this.vertexBuffer = gl.createBuffer();
-      if (!this.vertexBuffer) {
-          console.log('Failed to create the buffer object for Cube');
-          return;
-      }
-      gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
-      gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.STATIC_DRAW);
-      gl.bindBuffer(gl.ARRAY_BUFFER, null); // Unbind buffer
+  constructor(gl, texture) {
+    this.gl = gl;
+    this.texture = texture;
+    this.modelMatrix = new Matrix4();
+    this._initBuffer();
   }
 
-  render() {
-      if (!this.vertexBuffer) {
-           console.error("Cube vertexBuffer not initialized");
-           return;
-      }
-      // Pass the color
-      gl.uniform4f(u_FragColor, this.color[0], this.color[1], this.color[2], this.color[3]);
+  _initBuffer() {
+    const gl = this.gl;
+    // Vertex data: x,y,z, u,v
+    const vertices = new Float32Array([
+      // front
+      -0.5,-0.5, 0.5, 0,0,   0.5,-0.5, 0.5, 1,0,   0.5, 0.5, 0.5, 1,1,
+      -0.5,-0.5, 0.5, 0,0,   0.5, 0.5, 0.5, 1,1,  -0.5, 0.5, 0.5, 0,1,
+      // right
+       0.5,-0.5, 0.5, 0,0,   0.5,-0.5,-0.5, 1,0,   0.5, 0.5,-0.5, 1,1,
+       0.5,-0.5, 0.5, 0,0,   0.5, 0.5,-0.5, 1,1,   0.5, 0.5, 0.5, 0,1,
+      // back
+      -0.5,-0.5,-0.5, 0,0,   0.5,-0.5,-0.5, 1,0,   0.5, 0.5,-0.5, 1,1,
+      -0.5,-0.5,-0.5, 0,0,   0.5, 0.5,-0.5, 1,1,  -0.5, 0.5,-0.5, 0,1,
+      // left
+      -0.5,-0.5, 0.5, 0,0,  -0.5, 0.5, 0.5, 1,0,  -0.5, 0.5,-0.5, 1,1,
+      -0.5,-0.5, 0.5, 0,0,  -0.5, 0.5,-0.5, 1,1,  -0.5,-0.5,-0.5, 0,1,
+      // top
+      -0.5, 0.5, 0.5, 0,0,   0.5, 0.5, 0.5, 1,0,   0.5, 0.5,-0.5, 1,1,
+      -0.5, 0.5, 0.5, 0,0,   0.5, 0.5,-0.5, 1,1,  -0.5, 0.5,-0.5, 0,1,
+      // bottom
+      -0.5,-0.5, 0.5, 0,0,   0.5,-0.5, 0.5, 1,0,   0.5,-0.5,-0.5, 1,1,
+      -0.5,-0.5, 0.5, 0,0,   0.5,-0.5,-0.5, 1,1,  -0.5,-0.5,-0.5, 0,1
+    ]);
+    this.vertexCount = 36;
+    this.buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+  }
 
-      // Pass the matrix
-      gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
+  draw(a_Position, a_TexCoord, u_ModelMatrix, u_ViewMatrix, u_ProjMatrix, u_Sampler,
+       viewMatrix, projMatrix) {
+    const gl = this.gl;
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
+    gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 20, 0);
+    gl.vertexAttribPointer(a_TexCoord, 2, gl.FLOAT, false, 20, 12);
+    gl.enableVertexAttribArray(a_Position);
+    gl.enableVertexAttribArray(a_TexCoord);
 
-      // Bind the existing buffer
-      gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
+    gl.uniformMatrix4fv(u_ModelMatrix, false, this.modelMatrix.elements);
+    gl.uniformMatrix4fv(u_ViewMatrix,  false, viewMatrix.elements);
+    gl.uniformMatrix4fv(u_ProjMatrix,  false, projMatrix.elements);
 
-      // Setup attribute pointer
-      if (a_Position < 0) { console.log('Failed to get a_Position'); return; }
-      gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
-      gl.enableVertexAttribArray(a_Position);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, this.texture);
+    gl.uniform1i(u_Sampler, 0);
 
-      // Draw
-      gl.drawArrays(gl.TRIANGLES, 0, this.vertexCount);
+    gl.drawArrays(gl.TRIANGLES, 0, this.vertexCount);
   }
 }

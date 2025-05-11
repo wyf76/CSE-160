@@ -1,4 +1,3 @@
-// cuon-matrix.js (c) 2012 kanda and matsuda
 /** 
  * This is a class treating 4x4 matrix.
  * This class contains the function that is equivalent to OpenGL matrix stack.
