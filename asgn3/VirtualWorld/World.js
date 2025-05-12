@@ -120,7 +120,7 @@ function loadTexture(url,onload){
 
 function start(){
   maze=generateMaze(25,25);
-  g_camera=new Camera();
+  g_camera=new camera();
   setupInput();
 
   // treasure at exit
