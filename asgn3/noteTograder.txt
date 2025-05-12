@@ -22,10 +22,10 @@ Z: Add a block in front of the camera
 
 C: Remove a block in front of the camera
 
-!!!!! I used ChatGPT to help me debug the treasure interaction, add animations, and simplify the shader for mixing a solid‑color sky.
+!!!!! I used ChatGPT to help me debug the treasure interaction, add animations, maze generator, debug camera, and simplify the shader for mixing a solid‑color sky.
 
-Simple story/game (“wow” element) (1 / 1)– World.js, checkTreasure() proximity test; lines 240–255: onTreasureFound() animation.
+Simple story/game (“wow” element) – World.js, checkTreasure() proximity test;  onTreasureFound() animation.
 
-Performance (≥10 FPS on 32×32) (0.5 / 0.5)– World.js, FPS counter in tick().
+Performance (≥10 FPS on 32×32)– World.js, FPS counter in tick().
 
-Creativity bonus (“Wow!”) (0.5 / 0.5)– World.js, treasure pop‑spin animation.
+Creativity bonus (“Wow!”) – World.js, treasure pop‑spin animation.
