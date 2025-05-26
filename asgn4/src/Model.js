@@ -85,4 +85,4 @@ class Model {
     gl.vertexAttribPointer(attrib, size, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(attrib);
   }
-}
+} 
