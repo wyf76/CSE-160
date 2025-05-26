@@ -1,0 +1,15 @@
+This project successfully implements all the required features from the rubric:
+
+Core Scene: The world is a procedurally generated maze, with textured cubes and a sphere.
+Lighting Model: Full Phong lighting (ambient, diffuse, and specular) is implemented in the fragment shader.
+Lights:
+A point light illuminates the scene, and its position is marked by a small cube.
+A spotlight is attached to the camera, acting as a flashlight.
+Controls:
+The camera has full movement (W, A, S, D) and look controls (mouse).
+UI sliders allow for full control over the point light's position (X, Y, Z) and color (R, G, B).
+UI buttons are available to toggle the point light, the spotlight, and the normal visualization.
+An additional toggle button has been added to play or pause the light's automatic animation, allowing the sliders to be used without being overridden.
+Extra Credit: The extra credit has been completed. The benchy.obj model is loaded into the scene and is correctly lit by both the point light and the spotlight. Please note that because the provided OBJLoader.js does not parse texture coordinates, the model is rendered with a solid grey color as intended.
+
+Additionally, I would like to note that I utilized an AI assistant for help with debugging errors, implementing new features, and clarifying concepts throughout the development of this project.

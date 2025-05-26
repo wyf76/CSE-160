@@ -28,7 +28,7 @@ const FSHADER_SOURCE = `
   // Uniforms
   uniform sampler2D u_Sampler;
   uniform bool u_UseTexture;
-  uniform vec4 u_BaseColor; // <<< THIS LINE WAS MISSING. IT IS NOW FIXED.
+  uniform vec4 u_BaseColor;
   uniform bool u_NormalsOn;
   uniform vec3 u_CameraPos;
   
@@ -159,10 +159,7 @@ function start() {
   g_sphere = new Sphere(gl, wallTexture, 40);
   g_lightMarker = new Cube(gl, wallTexture);
   skyCube = new Cube(gl, skyTexture);
-
-  g_hatModel = new Model(gl, '../assets/benchy.obj'); // Changed to bunny for faster testing
-
-
+  g_hatModel = new Model(gl, '../assets/benchy.obj');
 
   setupInput();
   setupUI();
@@ -261,7 +258,6 @@ function render() {
   g_sphere.modelMatrix.setTranslate(3, 1, 3).scale(0.8, 0.8, 0.8);
   g_sphere.draw(gl.program);
 
-  //THE OBJ MODEL
   if (g_hatModel) {
     g_hatModel.modelMatrix.setTranslate(-3, 1, 3); // Position it in the world
     g_hatModel.draw(gl.program);
@@ -292,7 +288,6 @@ function tick(now) {
   }
   lastTime = now;
 
-  // --- UPDATE THE ANIMATION LOGIC ---
   if (g_lightAnimationOn) {
     // Animate the light's position
     g_pointLightPos[0] = Math.cos(now / 1000) * 10;
@@ -355,6 +350,5 @@ function generateMaze(rows, cols) {
   m[rows - 2][cols - 1] = 0;
   return m;
 }
-
 
 main();

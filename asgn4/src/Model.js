@@ -1,12 +1,9 @@
-// In asgn4/src/Model.js -- REPLACE the entire file with this:
-
 class Model {
   constructor(gl, objSrc) {
     this.gl = gl;
     this.objSrc = objSrc;
     this.modelMatrix = new Matrix4();
 
-    // Buffers will be created once the model is loaded
     this.vertexBuffer = null;
     this.normalBuffer = null;
     this.numVertices = 0;
@@ -16,7 +13,7 @@ class Model {
 
   async init() {
     try {
-      // Use the OBJLoader class from the script you provided
+      // Use the OBJLoader class from the script provided by the course
       const loader = new OBJLoader(this.objSrc);
       await loader.parseModel();
       
@@ -24,7 +21,6 @@ class Model {
       if (loader.isFullyLoaded) {
         const drawingInfo = loader.getModelData();
         
-        // Create and load the buffers
         this.vertexBuffer = this.createBuffer(drawingInfo.vertices, this.gl.ARRAY_BUFFER);
         this.normalBuffer = this.createBuffer(drawingInfo.normals, this.gl.ARRAY_BUFFER);
         this.numVertices = drawingInfo.vertices.length / 3;
@@ -53,8 +49,8 @@ class Model {
 
     const gl = this.gl;
 
-    // --- Special Draw Call for the Model ---
-    // Turn OFF textures and set a base color, because this loader doesn't support UVs
+    // --- Model-Specific Drawing ---
+    // Turn OFF textures and set a base color, because this loader doesn't support UVs.
     const u_UseTexture = gl.getUniformLocation(program, "u_UseTexture");
     gl.uniform1i(u_UseTexture, false);
     const u_BaseColor = gl.getUniformLocation(program, "u_BaseColor");
