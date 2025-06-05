@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Three.js Extended Orbs Game</title>
+
+    <!-- IMPORT MAP (leave as-is) -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js",
+        "three/addons/controls/OrbitControls.js": "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/controls/OrbitControls.js",
+        "three/addons/loaders/MTLLoader.js":    "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/loaders/MTLLoader.js",
+        "three/addons/loaders/OBJLoader.js":    "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/loaders/OBJLoader.js"
+      }
+    }
+    </script>
+
+    <style>
+      body { margin: 0; overflow: hidden; background: #222; }
+      #scoreboard, #lives, #timer {
+        position: absolute;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        background: rgba(0,0,0,0.5);
+        padding: 6px 10px;
+        border-radius: 4px;
+      }
+      #scoreboard { top: 10px; left: 10px; }
+      #lives      { top: 40px; left: 10px; }
+      #timer      { top: 70px; left: 10px; }
+
+      #message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ffcc00;
+        font-family: Arial, sans-serif;
+        font-size: 48px;
+        background: rgba(0,0,0,0.7);
+        padding: 20px 30px;
+        border-radius: 6px;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="scoreboard">Score: 0</div>
+    <div id="lives">Lives: 3</div>
+    <div id="timer">Time: 60</div>
+    <div id="message"></div>
+
+    <!-- Load main.js as an ES module -->
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
